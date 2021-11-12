@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <string>
 #include "non_playable_character.h"
 #include "playable_character.h"
 
