@@ -1,52 +1,52 @@
 #pragma once
-namespace entities{
-class entity
+namespace entities
 {
-
-public:
-    int HP ;
-    entity()
+    class entity
     {
-        HP = 5;
-    }
 
-    int life()
+    public:
+        int HP;
+        int ATK;
+         entity()
+        {
+            HP = 0;
+        }
+        void operator++()
+        {
+            HP++;
+        }
+        int life()
+        {
+            return HP;
+        }
+
+        void print_life()
+        {
+            std::cout << HP << std::endl;
+        }
+
+        virtual std::string to_string() const
+        {
+            return "day_04::ex_01::entity";
+        }
+
+        ~entity()
+        {
+        }
+    };
+
+    class object
     {
-        return HP;
-    }
 
-    const std::string to_string()
-    {
-        return std::to_string(this&);
-    }
-
-    ~entity()
-    {
-    }
-};
-
-class object
-{
-
-public:
-    int HP ;
-    object()
-    {
-        HP = 5;
-    }
-
-    int life()
-    {
-        return HP;
-    }
-
-    const std::string to_string()
-    {
-        return std::to_string(this&);
-    }
-
-    ~object()
-    {
-    }
-};
+    public:
+        int HP;
+        object(entity &h)
+        {
+            HP = h.HP;
+        }
+        std::string to_string() const
+        {
+            return "day_04::ex_01::object";
+        }
+    };
 }

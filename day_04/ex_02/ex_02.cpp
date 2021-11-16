@@ -43,16 +43,16 @@ int main()
         //	std::cout << pnj1.life() << std::endl; //must not compile : inaccessible
         //	std::cout << player.life() << std::endl; //must not compile : inaccessible
 
-        player *pnj1;
+       player *pnj1;
 
-        std::cout << "pnj1 life : " << std::endl;
-        pnj1.print_life();
-        std::cout << "player life : " << std::endl;
-        player.print_life();
+       std::cout << "pnj1 life : " << std::endl;
+       pnj1.print_life();
+       std::cout << "player life : " << std::endl;
+       player.print_life();
 
-        (player * pnj1) * pnj1;
-        //	pnj1 * player; //must not compile : not match operator
-
+      (player * pnj1) * pnj1;
+      //  //	pnj1 * player; //must not compile : not match operator
+//
         std::cout << "pnj1 life : " << std::endl;
         pnj1.print_life();
         std::cout << "player life : " << std::endl;
