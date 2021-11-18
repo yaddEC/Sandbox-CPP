@@ -8,8 +8,9 @@ private:
 public:
   SmartPtr()
   {
+    value = nullptr;
     inc = new int;
-    *inc = 0;
+    *inc = 1;
   }
 
   T &operator*()
@@ -18,14 +19,24 @@ public:
   }
   void reset()
   {
+    (*inc)--;
+
     value = {nullptr};
   }
 
-  void operator=(SmartPtr const &a)
+  SmartPtr &operator=(SmartPtr const &a)
   {
+    (*inc)--;
+    if (*inc <= 1)
+    {
+
+      delete inc;
+    }
+
     value = a.value;
     inc = a.inc;
     *inc = *inc + 1;
+    return *this;
   }
 
   explicit operator bool() const
@@ -37,11 +48,13 @@ public:
   {
     value = a;
     inc = new int;
-    *inc = 0;
+    *inc = 1;
   }
 
   SmartPtr(SmartPtr const &a)
   {
+    if (*inc <= 1)
+      delete inc;
     value = a.value;
     inc = a.inc;
     *inc = *inc + 1;
@@ -53,17 +66,18 @@ public:
   }
   ~SmartPtr()
   {
-    if (*inc == 0)
+    if (*inc == 1)
+    {
+      delete value;
+      delete inc;
+    }
+    else if (*inc < 1)
     {
       delete value;
     }
     else
     {
       *inc = *inc - 1;
-      value = {nullptr};
-      inc = {nullptr};
-      delete value;
-      delete inc;
     }
   }
 };
